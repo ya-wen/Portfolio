@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+</style>
+</head>
+<body>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/KeyboardState.js"></script>
+<script>
+var renderer;
+var controls;
+var keyboard = new KeyboardState();
+var scene,camera;
+var r=50.0;
+var angle=0.0;
+init();
+animate();
+
+function addrenderer(){
+	renderer = new THREE.WebGLRenderer( {antialias:true} );
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	renderer.setSize (width,height);
+	document.body.appendChild (renderer.domElement);
+	scene=new THREE.Scene();
+}
+function addcamera(){
+	var width=window.innerWidth;
+	var height=window.innerHeight;
+	camera=new THREE.PerspectiveCamera(45,width/height,1,10000);
+	camera.position.y=50;
+	camera.position.z=50;
+}
+
+function building(){
+
+	texture=THREE.ImageUtils.loadTexture('image/window.png');;
+	for(var i=0;i<160;i++)
+	{
+		
+		var theposx=Math.random()*20-10;
+		var theposz=Math.random()*20-10;
+		var heigh=Math.random()*14.2;
+		var material = new THREE.MeshLambertMaterial({
+		color: 0x888888,
+		//map:texture
+		//transparent:true,
+		//opacity:0.11
+		});
+		
+	//	material.opacity=Math.random()+0.5;
+		material.color.r=Math.random();
+		for(var j=0;j<heigh;j++)
+		{
+		
+		geometry = new THREE.BoxGeometry(1,1,1,2);
+		var line = new THREE.Mesh( geometry, material );
+		line.position.set(theposx,j,theposz);
+		//line.position.set(0,j,0);
+		scene.add( line );
+		}
+		
+		
+	}
+
+
+}
+function draw(){
+
+	var lightambient = new THREE.AmbientLight( 0x888888 ); // soft white light
+	scene.add( lightambient );
+	var light = new THREE.DirectionalLight( 0xFFFFFF );
+
+	var directionalLight = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	directionalLight.position.set( 1, 1, 0 );
+	scene.add( directionalLight );
+	
+	
+	var material = new THREE.MeshLambertMaterial({
+	color: 0x00ffff,
+	transparent:true,
+	opacity:0.1
+	});
+	geometry = new THREE.IcosahedronGeometry(20,2);
+	var line = new THREE.Mesh( geometry, material );
+	scene.add( line );
+	/*============================*/
+	var materialground = new THREE.MeshLambertMaterial({
+	color: 0x32590D,
+	side:THREE.DoubleSide,
+	
+	});
+	geometryground = new THREE.PlaneGeometry(28,28,2);
+	var lineground = new THREE.Mesh( geometryground, materialground );
+	lineground.rotation.x=Math.PI/2.0;
+	scene.add( lineground );
+	/*============================*/
+	building();
+	
+	
+}
+function onWindowResize(){
+	camera.aspect= window.innerWidth/window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth,window.innerHeight);
+
+}
+function allevent(){
+controls=new THREE.OrbitControls(camera,renderer.domElement);
+window.addEventListener('resize',onWindowResize,false);
+}
+function init(){
+	addrenderer();
+	
+	addcamera();
+	draw();
+	allevent();
+}
+function key(){
+	
+	if(keyboard.pressed("S"))
+	{
+		
+	}
+	if(keyboard.pressed("A"))
+	{
+		
+	}
+	
+}	
+function animate(){
+	keyboard.update();
+	controls.update();
+	key();
+	angle+=0.01;
+	if(r>20)r-=0.1;
+	camera.position.x=r*Math.sin(angle);
+	camera.position.z=r*Math.cos(angle);
+	requestAnimationFrame(animate);
+	renderer.setClearColor(0x555555)
+	renderer.render(scene,camera);
+}
+
+
+
+</script>
+</body>
+</html>
