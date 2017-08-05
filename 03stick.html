@@ -2,18 +2,24 @@
 <html>
 <head>
 <style>
-	canvas {
-		position: fixed;
-		top: 0;
-		left: 0;
+	#info {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    color: #ffff00
 	}
+
 </style>
 </head>
-<h1></h1>
 <body>
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script src="js/KeyboardState.js"></script>
+<div id="info">
+press "X" to shoot<br/> 
+</div>
 <script>
 var Dart=function(){
 	this.geo=new THREE.Object3D();
@@ -223,6 +229,7 @@ function animate(){
 	{
 		drawstart();
 		startangle+=0.1;
+		
 		if(startangle>(Math.PI*2))
 		{
 			pos=2;
@@ -259,6 +266,7 @@ function animate(){
 			
 			go();
 		}
+		if(displance>=10000)pos=3;
 	}
 	
 	keyboard.update();

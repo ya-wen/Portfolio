@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	canvas {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+</style>
+</head>
+<body>
+<script src="js/three.min.js"></script>
+<script src="js/OrbitControls.js"></script>
+<script src="js/KeyboardState.js"></script>
+<script>
+var renderer;
+var controls;
+var keyboard = new KeyboardState();
+var scene,camera;
+init();
+animate();
+
+function addrenderer(){
+	renderer = new THREE.WebGLRenderer( {antialias:true} );
+	var width = window.innerWidth;
+	var height = window.innerHeight;
+	renderer.setSize (width,height);
+	document.body.appendChild (renderer.domElement);
+	scene=new THREE.Scene();
+}
+function addcamera(){
+	var width=window.innerWidth;
+	var height=window.innerHeight;
+	camera=new THREE.PerspectiveCamera(45,width/height,1,10000);
+	camera.position.z=250;
+}
+function draw(){
+	var material = new THREE.MeshBasicMaterial({
+	color: 0x00ff00,
+	opacity:0.35,
+	transparent:true
+	});
+	geometry = new THREE.IcosahedronGeometry(20,2);
+	var line = new THREE.Mesh( geometry, material );
+	scene.add( line );
+	
+	
+}
+function onWindowResize(){
+	camera.aspect= window.innerWidth/window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth,window.innerHeight);
+
+}
+function allevent(){
+controls=new THREE.OrbitControls(camera,renderer.domElement);
+window.addEventListener('resize',onWindowResize,false);
+}
+function init(){
+	addrenderer();
+	
+	addcamera();
+	draw();
+	allevent();
+}
+function key(){
+	
+	if(keyboard.pressed("S"))
+	{
+		
+	}
+	if(keyboard.pressed("A"))
+	{
+		
+	}
+	
+}	
+function animate(){
+	keyboard.update();
+	controls.update();
+	key();
+	requestAnimationFrame(animate);
+	renderer.setClearColor(0x555555)
+	renderer.render(scene,camera);
+}
+
+
+
+</script>
+</body>
+</html>
