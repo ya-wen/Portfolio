@@ -238,23 +238,28 @@ function init() {
 
 function rotateBillboard (mesh)
 {
-    var b = mesh.position.clone();  // billboard location
+
+    var b =  mesh.position.clone();  // billboard location
     var rotaxis = new THREE.Vector3();
-    var v, yhat, n;
+	var rotaxis2 = new THREE.Vector3();
+    var v, yhat,xhat, n,vx,vy;
     
-    v = camera.position.clone(); // clone the camera position
+    vy = vx = camera.position.clone(); // clone the camera position
     yhat = new THREE.Vector3(0, 1, 0); // up
+	xhat = new THREE.Vector3(1, 0, 0); // up
     n = new THREE.Vector3(0, 0, 1); // billboard normal
+	n2 = new THREE.Vector3(0, 1, 0);
+    vy.subVectors(vy, b); // v-b
+    vy.sub(yhat.clone().multiplyScalar(vy.dot(yhat)));
+    vy.normalize(); // pxz
 
-    v.subVectors(v, b); // v-b
-    v.sub(yhat.clone().multiplyScalar(v.dot(yhat)));
-    v.normalize(); // pxz
-
-    rotangle = Math.acos(v.dot(n));
-    rotaxis.crossVectors(n, v);
+    rotangle = Math.acos(vy.dot(n));
+    rotaxis.crossVectors(n, vy);
     if (rotaxis.dot(yhat) < 0) rotangle *= -1;
 
-    mesh.rotation.y = rotangle;
+  //  mesh.rotation.y = rotangle;
+	mesh.lookAt(camera.position);
+	
 }
 
 

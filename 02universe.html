@@ -51,6 +51,7 @@ var sign = 1.0;
 var eartex,moontex,suntex,texture;
 var turning=1.0,forbgm=1.0;
 var sceneBack, cameraBack;
+var earthball;
 init();
 animate();
 
@@ -98,14 +99,16 @@ function init() {
     sun = new THREE.Mesh(new THREE.SphereGeometry(20,18,18),
     new THREE.MeshBasicMaterial({ map: suntex, side: THREE.DoubleSide } ));
 	
-    
+    earthball=new THREE.Object3D();
     earth = new THREE.Mesh(new THREE.SphereGeometry(10,18,18),
     new THREE.MeshBasicMaterial({ map: eartex, side: THREE.DoubleSide }));
 
     moon = new THREE.Mesh(new THREE.SphereGeometry(3,9,9),
     new THREE.MeshBasicMaterial({ map: moontex, side: THREE.DoubleSide }));
-   earth.add(moon);
-    sun.add(earth);
+	earth.add(moon);
+	earthball.add(earth);
+	earthball.rotateZ(23.5/180.0*Math.PI);
+    scene.add(earthball);
     scene.add(sun);
 	
    // var gridXZ = new THREE.GridHelper(100, 10);
@@ -164,8 +167,9 @@ function render() {
 		angle2 += 0.0072;//月亮公轉與自轉  27day 計算方便  當作25天
 		
     }
-	earth.position.set(80 * Math.cos( tosun), 0, -80 * Math.sin( tosun));
+	earthball.position.set(80 * Math.cos( tosun),0, -80 * Math.sin( tosun));
     earth.rotation.y = angle;
+	
     moon.position.set(20 * Math.cos(angle2 - angle),0,-20 * Math.sin(angle2 - angle));
     moon.rotation.y =  angle2 - angle;
 
