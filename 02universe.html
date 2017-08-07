@@ -21,6 +21,14 @@
     text-align: LEFT;
     color: #ffff00
 	}
+	#info3 {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    padding: 10px;
+    text-align: LEFT;
+    color: #ffff00
+	}
 </style>
 <script type="text/javascript" src="js/bdh.js"></script></head>
 
@@ -34,7 +42,9 @@
 	 c : turn on/off BGM
   </div>
   
-
+ <div id = "info3"> 
+	 X : turn on/off path
+  </div>
 
 <audio id="bgm" autoplay loop style="display:none">
 <source src="sounds/01.mp3" type='audio/mp3'>
@@ -49,13 +59,21 @@ var camera, scene, renderer, sun, earth, angle = 0,tosun=0.0,angle2=0.0,
 var bgm;
 var sign = 1.0;
 var eartex,moontex,suntex,texture;
-var turning=1.0,forbgm=1.0;
+var turning=1.0,forbgm=0.3;
 var sceneBack, cameraBack;
 var earthball;
+var torus1,torus2;
+var earthpath=0,angpath=0.001;
 init();
 animate();
 
-
+function grid(){
+var geometry = new THREE.TorusGeometry( 80, 0.5, 16, 100, angpath );
+var material = new THREE.MeshBasicMaterial( { color: 0xff88ff } );
+torus1 = new THREE.Mesh( geometry, material );
+torus1.rotation.x=Math.PI/2.0;
+ scene.add( torus1 );
+}
 
 function init() {
 
@@ -106,6 +124,15 @@ function init() {
     moon = new THREE.Mesh(new THREE.SphereGeometry(3,9,9),
     new THREE.MeshBasicMaterial({ map: moontex, side: THREE.DoubleSide }));
 	earth.add(moon);
+	
+	var geometry = new THREE.TorusGeometry( 20, 0.5, 16, 100, angpath);
+	var material = new THREE.MeshBasicMaterial( { color: 0x00ffff } );
+	torus2 = new THREE.Mesh( geometry, material );
+	torus2.rotation.x=Math.PI/2.0;
+	earth.add( torus2 );
+	
+	
+	
 	earthball.add(earth);
 	earthball.rotateZ(23.5/180.0*Math.PI);
     scene.add(earthball);
@@ -122,7 +149,7 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x888888);
-
+	grid();
 	 renderer.autoClear = false;
     control = new THREE.OrbitControls(camera, renderer.domElement);
     document.body.appendChild(renderer.domElement);
@@ -149,8 +176,16 @@ function animate() {
 	{
 		sign*=(-1);
 	}
+	if ( keyboard.down("X"))  // yes, must use UPPER CASE
+	{
+		if(earthpath==0)
+			earthpath=1;
+		if(earthpath==2)
+			earthpath=3;
+		
+	}
 	forbgm += sign*0.01;
-	forbgm = THREE.Math.clamp (forbgm, 0, 1);
+	forbgm = THREE.Math.clamp (forbgm, 0, 0.3);
 	bgm.volume = forbgm;
 	
 	render();
@@ -167,6 +202,34 @@ function render() {
 		angle2 += 0.0072;//月亮公轉與自轉  27day 計算方便  當作25天
 		
     }
+	if(earthpath==3)
+	{
+		angpath-=0.1;
+		if(angpath<0.001)
+		{
+			angpath=0.001;
+			earthpath=0;
+		}
+		torus1.geometry=new THREE.TorusGeometry( 80, 0.5, 16, 100,angpath );
+		torus2.geometry=new THREE.TorusGeometry( 20, 0.5, 16, 100,angpath );
+		
+	
+	}
+	if(earthpath==1)
+	{
+		angpath+=0.1;
+		torus1.geometry=new THREE.TorusGeometry( 80, 0.5, 16, 100,angpath );
+		torus2.geometry=new THREE.TorusGeometry( 20, 0.5, 16, 100,angpath );
+		if(angpath>6.3)
+		{
+			angpath=6.3;
+			earthpath=2;
+		}
+	}
+	
+
+	
+	
 	earthball.position.set(80 * Math.cos( tosun),0, -80 * Math.sin( tosun));
     earth.rotation.y = angle;
 	
