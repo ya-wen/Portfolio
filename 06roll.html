@@ -18,9 +18,15 @@
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
 <script src="js/KeyboardState.js"></script>
+
 <div id="info">
-press "S" to get sign, "A" to restart<br/> 
+	press "S" to get sign, "A" to restart<br/> 
+<a href="javascript:toggle(sign);"style="background-color:#000000;color:#ffff00;" >get  sign</a>
+
+
+
 </div>
+
 <script>
 
 
@@ -39,6 +45,35 @@ var endball,endplane;
 init();
 animate();
 
+
+function toggle(mission)
+{
+    if(mission==sign)
+	{
+		if(down==0)
+		{
+			go=1;
+			setballcolor();
+		}
+		if(down==3)
+		{
+			
+			down=0;
+			xside=0;
+			yside=0;
+			ball.position.set(0,0,0);
+			endplane.material.opacity=0;
+			endball.material=  new THREE.MeshBasicMaterial( {color: 0xffff00,
+			opacity: 0.0,
+			transparent: true
+			} );
+			go=1;
+			setballcolor();
+			
+		}
+	}
+	
+}
 function addrenderer(){
 	renderer = new THREE.WebGLRenderer( {antialias:true} );
 	var width = window.innerWidth;

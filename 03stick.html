@@ -16,9 +16,17 @@
 <body>
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/KeyboardState.js"></script>
-<div id="info">
-press "X" to shoot<br/> 
+
+
+<div>
+    <button id="S">
+        shoot
+    </button>
+	<button id="back">
+        back
+    </button>
 </div>
 <script>
 var Dart=function(){
@@ -96,6 +104,14 @@ Dart.prototype.draw=function(){
 	
 	scene.add(this.geo);
 }
+Dart.prototype.remove=function(){
+	scene.remove(this.geo);
+	for(var i=0;i<this.dartcycle.length;i++)
+	{
+	scene.remove(this.dartcycle[i])
+	}
+	
+}
 var starttoru,startangle=0.1;
 var renderer;
 var controls;
@@ -109,6 +125,23 @@ var pos=0;
 var displance=0.0;
 init();
 animate();
+
+
+$("#S").click(function(){
+	pos=1.0;
+	rotat=1.0;
+});
+$("#back").click(function(){
+	rotat=0;
+	dir=new THREE.Vector3(0,0,0);
+	angle=new THREE.Vector3(0,0,0);
+	pos=0;
+	displance=0.0;
+	scene.add(starttoru);
+	startangle=0.1;
+	darts.remove();
+	draw();
+});
 function light(){
 	var light = new THREE.AmbientLight( 0x404040 ); // soft white light
 	scene.add( light );
@@ -137,21 +170,14 @@ function addcamera(){
 	camera=new THREE.PerspectiveCamera(45,width/height,1,10000);
 	camera.position.z=500;
 }
-function grid(){
 
-
-}
 function draw(){
 	darts=new Dart();
 	darts.newOne(20,new THREE.MeshLambertMaterial({color:0xff0000,side: THREE.DoubleSide}));
 	darts.draw();
-//	angle.y=-Math.PI/6.0;
 	angle.x=-Math.PI/2.0;
-	//angle.z=-Math.PI/6.0;
 	darts.geo.rotation.set(angle.x,angle.y,angle.z);
-	//darts.geo.position.x=100;
-	//darts.geo.rotation.z=-Math.PI/6.0;
-	//darts.geo.rotation.y=-Math.PI/6.0;
+
 }
 function onWindowResize(){
 	camera.aspect= window.innerWidth/window.innerHeight;
@@ -173,17 +199,7 @@ function init(){
 	go();
 	allevent();
 }
-function key(){
-	
-	
-	if(keyboard.pressed("X"))
-	{
-		pos=1.0;
-		rotat=1.0;
-	}
-	
-	
-}	
+
 function drawstart(){
 	scene.remove(starttoru);
 	var geometry = new THREE.TorusGeometry(100, 1, 16, 100,startangle);
@@ -245,6 +261,7 @@ function animate(){
 			{
 			starttoru.material.opacity=i;
 			}
+			
 		}
 	}
 	if(rotat==1.0)
@@ -262,16 +279,13 @@ function animate(){
 		//darts.geo.translateY ( displance );
 		darts.geo.position.z=displance;
 		if((displance)%100==0)
-		{
-			
+		{	
 			go();
 		}
 		if(displance>=10000)pos=3;
 	}
-	
-	keyboard.update();
 	controls.update();
-	key();
+	
 	requestAnimationFrame(animate);
 	renderer.setClearColor(0x555555)
 	renderer.render(scene,camera);

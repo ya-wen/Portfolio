@@ -49,6 +49,8 @@
 	<a href="javascript:toggle(close);"style="background-color:#000000;color:#ffff00;">close</a>
    	<a href="javascript:toggle(stop);"style="background-color:#000000;color:#ffff00;">stop</a>
 	<br/>
+	<a href="javascript:toggle(frame);"style="background-color:#000000;color:#ffff00;" >frame</a>
+	<a href="javascript:toggle(door);"style="background-color:#000000;color:#ffff00;" >door</a>
 </div>
 
 <script src="model/handle_main.js">
@@ -91,7 +93,27 @@ function toggle(mission)
 	}
     if(mission==stop)
         mode=0;
-    
+		
+	if(mission==frame)
+	{
+	framemode++;         
+		if (framemode>3)
+			framemode=0;
+		scene.remove(frametop);
+		scene.remove(framedown);
+		scene.remove(frameleft);
+		scene.remove(frameright);
+		frame();
+	}
+	if(mission==door)
+	{
+		doormode++;         
+		if (doormode>4)
+			doormode=0;
+		scene.remove(dg);
+		doorboard();
+		doorlock();
+	}
 }
 
 function frame()

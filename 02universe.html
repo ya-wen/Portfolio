@@ -34,24 +34,27 @@
 
 <body>
 
-  <div id = "info"> 
-	 z : turn on/off Rotation
-  </div>
  
-   <div id = "info2"> 
-	 c : turn on/off BGM
-  </div>
-  
- <div id = "info3"> 
-	 X : turn on/off path
-  </div>
-
+<div>
+    <button id="Z">
+        turn on/off Rotation
+    </button>
+    
+    <button id="C">
+        turn on/off BGM
+    </button>
+	 <button id="X">
+        turn on/off path
+    </button>
+	
+</div>
 <audio id="bgm" autoplay loop style="display:none">
 <source src="sounds/01.mp3" type='audio/mp3'>
 </audio>
 
 <script src="js/three.min.js"></script>
 <script src="js/OrbitControls.js"></script>
+<script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/KeyboardState.js"></script>
 <script>
 var camera, scene, renderer, sun, earth, angle = 0,tosun=0.0,angle2=0.0,
@@ -66,6 +69,19 @@ var torus1,torus2;
 var earthpath=0,angpath=0.001;
 init();
 animate();
+
+$("#C").click(function(){
+	sign*=(-1);
+});
+$("#Z").click(function(){
+	turning*=(-1); 
+});
+$("#X").click(function(){
+	if(earthpath==0)
+		earthpath=1;
+	if(earthpath==2)
+		earthpath=3;
+});
 
 function grid(){
 var geometry = new THREE.TorusGeometry( 80, 0.5, 16, 100, angpath );
@@ -164,26 +180,12 @@ function onWindowResize() {
 
 function animate() {
 
-	keyboard.update();
+	
     control.update();
 	    
 
     requestAnimationFrame(animate);
 	
-	if ( keyboard.down("Z"))  // yes, must use UPPER CASE
-		turning*=(-1);   
-	if ( keyboard.down("C"))  // yes, must use UPPER CASE
-	{
-		sign*=(-1);
-	}
-	if ( keyboard.down("X"))  // yes, must use UPPER CASE
-	{
-		if(earthpath==0)
-			earthpath=1;
-		if(earthpath==2)
-			earthpath=3;
-		
-	}
 	forbgm += sign*0.01;
 	forbgm = THREE.Math.clamp (forbgm, 0, 0.3);
 	bgm.volume = forbgm;
