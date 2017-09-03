@@ -20,7 +20,8 @@
 <script src="js/KeyboardState.js"></script>
 
 
-<div>
+<div align=center>
+	"S" to shoot, "A" to restart. Or press the button.
     <button id="S">
         shoot
     </button>
@@ -238,6 +239,28 @@ function go(){
 	scene.add( darts.dartcycle[darts.dartcycle.length-1] );
 	
 }
+function key(){
+	
+	if(keyboard.pressed("S"))
+	{
+		pos=1.0;
+		rotat=1.0;
+	}
+	if(keyboard.pressed("A"))
+	{
+		rotat=0;
+		dir=new THREE.Vector3(0,0,0);
+		angle=new THREE.Vector3(0,0,0);
+		pos=0;
+		displance=0.0;
+		scene.add(starttoru);
+		startangle=0.1;
+		darts.remove();
+		draw();
+	}
+	
+	
+}	
 function animate(){
 	
 	
@@ -284,8 +307,9 @@ function animate(){
 		}
 		if(displance>=10000)pos=3;
 	}
+	keyboard.update();
 	controls.update();
-	
+	key();
 	requestAnimationFrame(animate);
 	renderer.setClearColor(0x555555)
 	renderer.render(scene,camera);

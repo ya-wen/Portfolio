@@ -35,7 +35,8 @@
 <body>
 
  
-<div>
+<div align=center>
+	"Z" to turn on/off Rotation."C" to turn on/off BGM."X" to turn on/off path.Or press the button.
     <button id="Z">
         turn on/off Rotation
     </button>
@@ -58,7 +59,7 @@
 <script src="js/KeyboardState.js"></script>
 <script>
 var camera, scene, renderer, sun, earth, angle = 0,tosun=0.0,angle2=0.0,
-    clock, control,keyboard = new KeyboardState();
+clock, control,keyboard = new KeyboardState();
 var bgm;
 var sign = 1.0;
 var eartex,moontex,suntex,texture;
@@ -195,8 +196,27 @@ function animate() {
     renderer.render(sceneBack, cameraBack);
 	renderer.render(scene, camera);
 }
+function key(){
+	if(keyboard.pressed("C"))
+	{
+		sign*=(-1);
+	}
+	if(keyboard.pressed("Z"))
+	{
+		turning*=(-1); 
+	}
+	if(keyboard.pressed("X"))
+	{
+		if(earthpath==0)
+			earthpath=1;
+		if(earthpath==2)
+			earthpath=3;
+	}
 
+
+}
 function render() {
+
 	if(turning==1.0)
 	{
 		angle += 0.18;//地球自轉  1day 
@@ -237,7 +257,8 @@ function render() {
 	
     moon.position.set(20 * Math.cos(angle2 - angle),0,-20 * Math.sin(angle2 - angle));
     moon.rotation.y =  angle2 - angle;
-
+	keyboard.update();
+	key();
 
 }
 
