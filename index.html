@@ -1,127 +1,173 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+
 <style>
-h1 {
+.title {
+	position:fixed;
 	background: rgba(0,0,0,1.0); 
 	text-align: center;
 	color: white;
+	font-size:32px;
+	width:100%;
+	
+
 }
-</style>
-<head>
-<h1><font face="Bookman Old Style">Tseng's portfolio </font>
-</h1>
-<style>
-body {
+.webbackground {
+	width:100%;
     background-image: url("background.jpg");
     background-repeat: no-repeat;
 	background-size: cover;
 }
-table, th, td {
-   border: 0px ;
-   background: rgba(255,255,255,0.7)
-   
+.blockset{
+	
+	width:1000px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	
+}
+.blockset>.link{
+	position:relative;
+	width:300px;
+	height:200px;
+	background-color:rgba(231,169,24,0.5);
+	top:100px;
+	display:inline-block;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+.blockset>.link>.linkdraw{
+	position:absolute;
+	width:250px;
+	height:150px;
+	left:25px;
+	top:10px;
+	text-align:center;
+	 background-repeat: no-repeat;
+	background-size: cover;
+}
+.blockset>.link>.linkname{
+	position:absolute;
+	width:250px;
+	left:25px;
+	top:175px;
+	text-align:center;
+	
+}
+@media screen and (max-width:600px){
+	.blockset{
+		width:300px;
+		text-align:center;
+	}
 }
 </style>
-<head>
-<body > 
-<table border="0"  width="1167" align="center">
-	<tr>
-		<td width="389">
-		<a href="01build.html">
-		<img border="0" src="01build.gif" align="center" width="389" height="250"></td>
-		</a>
-		</td>
-		<td width="389">
-		<a href="02universe.html">
-		<img border="0" src="02universe.gif" align="center"width="389" height="250">
-		</a>
-		
-		</td>
-		
-		
-		<td>
-		<a href="03stick.html">
-		<img border="0" src="03stick.gif" align="center"width="389" height="250">
-		</a>
-		</td>
-	</tr>
-	<tr>
-		<td width="389">
-		<p align="center">
-		<a href="01build.html">
-		01.build</a></td>
-		<td width="447">
-		<p align="center">
-		<a href="02universe.html">
-		02.universe</a></td>
-		<td>
-		<p align="center">
-		<a href="03stick.html">
-		03.Darts </a>
-	</tr>
-	<tr>
-		<td width="389">
-		<a href="04clock.html">
-		<img border="0" src="04clock.gif" width="389" height="250">
-		</a>
-		
-		</td>
-		<td width="389">
-		<a href="05door.html">
-		<img border="0" src="05door.gif" width="389" height="250">
-		</a>
-		</td>
-		<td>
-		<a href="06roll.html">
-		<img border="0" src="06roll.gif" width="389" height="250">
-		</a>
-		</td>
-	</tr>
-	<tr>
-		<td width="389">
-		<p align="center">
-		<a href="04clock.html">
-		04.clock</a></td>
-		<td width="389">
-		<p align="center">
-		<a href="05door.html">
-		05.door</a></td>
-		<td>
-		<p align="center">
-		<a href="06roll.html">
-		06.Luckysign
-		</a>
-	</tr>
-	<tr>
-		<td width="389">
-		<a href="07runing.html">
-		<img border="0" src="07runing.gif" width="389" height="250">
-		</a>
-		</td>
-		<td width="389">
-		<a href="08segway.html">
-		<img border="0" src="08segway.gif" width="389" height="250">
-		</a>
-		</td>
-		<td>
-		<a href="09wheel.html">
-		<img border="0" src="09wheel.gif" width="389" height="250">
-		</a>
-		</td>
-	</tr>
-	<tr>
-		<td width="389">
-		<p align="center">
-		<a href="07runing.html">
-		07.runing</a></td>
-		<td width="447">
-		<p align="center">
-		<a href="08segway.html">
-		08.segway
-		</a></td>
-		<td>
-		<p align="center">
-		<a href="09wheel.html">09.wheel
-		</a>
-	</tr>
-</table>
+</head>
+<body class="webbackground"> 
+<div class="title">Tseng's portfolio</div>
+<div class="blockset">
+	<div class="link">
+		<div class="linkdraw">
+			<a href="01build.html">
+			<img border="0" src="01build.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="01build.html">build</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="02universe.html">
+			<img border="0" src="02universe.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="02universe.html">universe</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="03stick.html">
+			<img border="0" src="03stick.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="03stick.html">dart</a>
+		</div>
+	</div>
+</div>
+
+<div class="blockset">
+	<div class="link">
+		<div class="linkdraw">
+			<a href="04clock.html">
+			<img border="0" src="04clock.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="04clock.html">clock</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="05door.html">
+			<img border="0" src="05door.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="05door.html">door</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="06roll.html">
+			<img border="0" src="06roll.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="06roll.html">sign</a>
+		</div>
+	</div>
+</div>
+
+<div class="blockset">
+	<div class="link">
+		<div class="linkdraw">
+			<a href="07runing.html">
+			<img border="0" src="07runing.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="07runing.html">runing</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="08segway.html">
+			<img border="0" src="08segway.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="08segway.html">segway</a>
+		</div>
+	</div>
+	<div class="link">
+		<div class="linkdraw">
+			<a href="09wheel.html">
+			<img border="0" src="09wheel.gif" align="center"width=100% height=100%>
+			</a>
+		</div>
+		<div class="linkname">
+			<a href="09wheel.html">wheel</a>
+		</div>
+	</div>
+</div>
+
+<script>
+</script>
+</body>
+</html>
