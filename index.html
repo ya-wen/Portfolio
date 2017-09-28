@@ -34,6 +34,7 @@
 	width:300px;
 	height:200px;
 	background-color:rgba(231,169,24,0.5);
+	opacity:0.7;
 	top:100px;
 	display:inline-block;
 	margin-left:auto;
@@ -47,7 +48,7 @@
 	left:25px;
 	top:10px;
 	text-align:center;
-	 background-repeat: no-repeat;
+	background-repeat: no-repeat;
 	background-size: cover;
 }
 .blockset>.link>.linkname{
@@ -69,7 +70,7 @@
 <body class="webbackground"> 
 <div class="title">Tseng's portfolio</div>
 <div class="blockset">
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="01build.html">
 			<img border="0" src="01build.gif" align="center"width=100% height=100%>
@@ -79,7 +80,7 @@
 			<a href="01build.html">build</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="02universe.html">
 			<img border="0" src="02universe.gif" align="center"width=100% height=100%>
@@ -89,7 +90,7 @@
 			<a href="02universe.html">universe</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="03stick.html">
 			<img border="0" src="03stick.gif" align="center"width=100% height=100%>
@@ -102,7 +103,7 @@
 </div>
 
 <div class="blockset">
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="04clock.html">
 			<img border="0" src="04clock.gif" align="center"width=100% height=100%>
@@ -112,7 +113,7 @@
 			<a href="04clock.html">clock</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="05door.html">
 			<img border="0" src="05door.gif" align="center"width=100% height=100%>
@@ -122,7 +123,7 @@
 			<a href="05door.html">door</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="06roll.html">
 			<img border="0" src="06roll.gif" align="center"width=100% height=100%>
@@ -135,7 +136,7 @@
 </div>
 
 <div class="blockset">
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="07runing.html">
 			<img border="0" src="07runing.gif" align="center"width=100% height=100%>
@@ -145,7 +146,7 @@
 			<a href="07runing.html">runing</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="08segway.html">
 			<img border="0" src="08segway.gif" align="center"width=100% height=100%>
@@ -155,7 +156,7 @@
 			<a href="08segway.html">segway</a>
 		</div>
 	</div>
-	<div class="link">
+	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
 		<div class="linkdraw">
 			<a href="09wheel.html">
 			<img border="0" src="09wheel.gif" align="center"width=100% height=100%>
@@ -168,6 +169,20 @@
 </div>
 
 <script>
+function here(element)
+{
+	element.style.opacity=1.0;
+	//element.linkdraw.style.opacity=1.0;
+	//element.linkname.style.opacity=1.0;
+}
+function out(element)
+{
+	element.style.opacity=0.7;
+	//element.linkdraw.style.opacity=1.0;
+	//element.linkname.style.opacity=0.3;
+}
+
+
 </script>
 </body>
 </html>
