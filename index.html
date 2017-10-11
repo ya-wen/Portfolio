@@ -1,188 +1,186 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
-
 <head>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="viewport"
+content="width=device-width,inital-scale=1,maximum-scale=1"
+/>
 
 <style>
-.title {
-	position:fixed;
-	background: rgba(0,0,0,1.0); 
-	text-align: center;
-	color: white;
-	font-size:32px;
-	width:100%;
+			.settitle {
+				position:relative;
+				background: rgba(0,0,0,1.0); 
+				text-align: center;
+				color: white;
+				font-size:32px;
+				width:50%;
+				margin-left:auto;
+				margin-right:auto;
+			}
+			.thebackground{
+				background-image:url('background.jpg');
+				background-repeat:no-repeat;
+				background-size:cover;
+			}
+			.blockset{
+				position:relative;
+				padding:10px;
+				width:1000px;
+				height:300px;
+				margin-left:auto;
+				margin-right:auto;
+				text-align:center;
+				
+			}
+			.blockset>.label{
+				position:relative;
+				width:300px;
+				height:250px;
+				background-color:rgba(231,169,24,0.3);
+				margin-left:auto;
+				margin-right:auto;
+				text-align:center;
+				display:inline-block;
+			}
+			.label>.labelImg{
+				position:absolute;
+				width:250px;
+				height:200px;
+				background-color:rgba(255,125,75,0.3);
+				background-repeat:no-repeat;
+				background-size:250px 200px;
+				margin-left:25px;
+				margin-right:25px;
+				margin-top:10px;
+				text-align:center;
+			}
+			.label>.labelName{
+				position:absolute;
+				width:250px;
+				left:25px;
+				top:215px;
+				text-align:center;
+			}
+		@media screen and (max-width:600px)
+		{
+			.blockset{
+				width:300px;
+				height:750px;
+				text-align:center;
+			}
+			.blockset>.label
+			{
+				position:relative;
+			}
+		
+		}
+		</style>
+		
+		
+		<script src="https://fb.me/react-0.14.3.min.js"></script>
+		<script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+	</head>
 	
-
-}
-.webbackground {
-	width:100%;
-    background-image: url("background.jpg");
-    background-repeat: no-repeat;
-	background-size: cover;
-}
-.blockset{
+	<body class="thebackground">
+		<div class="settitle">Tseng's portfolio</div>
+			<div class="blockset">
+			<div id="inside" class="label"></div>
+			<div id="inside2"class="label"></div>
+			<div id="inside3"class="label"></div>
+			</div>
+			<div class="blockset">
+			<div id="inside4" class="label"></div>
+			<div id="inside5" class="label"></div>
+			<div id="inside6" class="label"></div>
+			</div>
+			<div class="blockset">
+			<div id="inside7" class="label"></div>
+			<div id="inside8" class="label"></div>
+			<div id="inside9" class="label"></div>
+			</div>
+			
+			
+		<script type="text/jsx">
+			
+			class InTheLabel extends React.Component{
+				constructor(props){
+					super(props);
+					this.state={
+					opacity:0.5
+					
+					};
+				}
+				here(){
+					this.setState({
+					opacity:1.0
+					}
+					);
+				}
+				out(){
+					this.setState(
+					{
+						opacity:0.5
+					}
+					);
+				}
+				
+				render(){
+				const styleObj={
+					opacity:this.state.opacity,
+				};
+				return(
+					<a href={""+this.props.fig+".html"}>
+					<div className="label" 
+					style={styleObj}
+					onMouseEnter={this.here.bind(this)}
+					onMouseLeave={this.out.bind(this)}
+					>
+						<div className="labelImg" 
+						style={{
+						backgroundImage:"url("+this.props.fig+".gif)"
+						}}
+						></div>
+						<div className="labelName" >{this.props.fig}</div>
+					</div>
+				</a>
+				
+				);
+			}
+			}
+			React.render(<InTheLabel fig="01build"/>,
+			document.getElementById('inside')
+			);
+			React.render(<InTheLabel fig="02universe"/>,
+			document.getElementById('inside2')
+			);
+			React.render(<InTheLabel fig="03stick"/>,
+			document.getElementById('inside3')
+			);
+			
+			React.render(<InTheLabel fig="04clock"/>,
+			document.getElementById('inside4')
+			);
+			React.render(<InTheLabel fig="05door"/>,
+			document.getElementById('inside5')
+			);
+			React.render(<InTheLabel fig="06roll"/>,
+			document.getElementById('inside6')
+			);
+			
+			React.render(<InTheLabel fig="07runing"/>,
+			document.getElementById('inside7')
+			);
+			React.render(<InTheLabel fig="08segway"/>,
+			document.getElementById('inside8')
+			);
+			React.render(<InTheLabel fig="09wheel"/>,
+			document.getElementById('inside9')
+			);
 	
-	width:1000px;
-	margin-left:auto;
-	margin-right:auto;
-	text-align:center;
-	
-}
-.blockset>.link{
-	position:relative;
-	width:300px;
-	height:200px;
-	background-color:rgba(231,169,24,0.5);
-	opacity:0.7;
-	top:100px;
-	display:inline-block;
-	margin-left:auto;
-	margin-right:auto;
-	
-}
-.blockset>.link>.linkdraw{
-	position:absolute;
-	width:250px;
-	height:150px;
-	left:25px;
-	top:10px;
-	text-align:center;
-	background-repeat: no-repeat;
-	background-size: cover;
-}
-.blockset>.link>.linkname{
-	position:absolute;
-	width:250px;
-	left:25px;
-	top:175px;
-	text-align:center;
-	
-}
-@media screen and (max-width:600px){
-	.blockset{
-		width:300px;
-		text-align:center;
-	}
-}
-</style>
-</head>
-<body class="webbackground"> 
-<div class="title">Tseng's portfolio</div>
-<div class="blockset">
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="01build.html">
-			<img border="0" src="01build.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="01build.html">build</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="02universe.html">
-			<img border="0" src="02universe.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="02universe.html">universe</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="03stick.html">
-			<img border="0" src="03stick.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="03stick.html">dart</a>
-		</div>
-	</div>  
-</div>
-
-<div class="blockset">
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="04clock.html">
-			<img border="0" src="04clock.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="04clock.html">clock</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="05door.html">
-			<img border="0" src="05door.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="05door.html">door</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="06roll.html">
-			<img border="0" src="06roll.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="06roll.html">sign</a>
-		</div>
-	</div>
-</div>
-
-<div class="blockset">
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="07runing.html">
-			<img border="0" src="07runing.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="07runing.html">runing</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="08segway.html">
-			<img border="0" src="08segway.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="08segway.html">segway</a>
-		</div>
-	</div>
-	<div class="link" onmouseout="out(this);" onmouseover="here(this);">
-		<div class="linkdraw">
-			<a href="09wheel.html">
-			<img border="0" src="09wheel.gif" align="center"width=100% height=100%>
-			</a>
-		</div>
-		<div class="linkname">
-			<a href="09wheel.html">wheel</a>
-		</div>
-	</div>
-</div>
-
-<script>
-function here(element)
-{
-	element.style.opacity=1.0;
-	//element.linkdraw.style.opacity=1.0;
-	//element.linkname.style.opacity=1.0;
-}
-function out(element)
-{
-	element.style.opacity=0.7;
-	//element.linkdraw.style.opacity=1.0;
-	//element.linkname.style.opacity=0.3;
-}
-
-
-</script>
+		</script>
+		
 </body>
+
+
 </html>
