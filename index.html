@@ -83,7 +83,21 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 	</head>
 	
 	<body class="thebackground">
+		
 		<div class="settitle">Tseng's portfolio</div>
+		<hr/>
+		<div class="settitle" onclick="onoff(1);">Web(click to on/off)</div>
+		<div  id="menu1">
+			<div class="blockset">
+				<div id="web" class="label"></div>
+			
+			</div>
+		</div>
+		<hr/>
+		
+		
+		<div class="settitle" onclick="onoff(2);">animation(click to on/off)</div>
+		<div  id="menu2">
 			<div class="blockset">
 			<div id="inside" class="label"></div>
 			<div id="inside2"class="label"></div>
@@ -100,7 +114,7 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			<div id="inside9" class="label"></div>
 			</div>
 			
-			
+		</div>
 		<script type="text/jsx">
 			
 			class InTheLabel extends React.Component{
@@ -148,6 +162,9 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 				);
 			}
 			}
+			React.render(<InTheLabel fig="comic"/>,
+			document.getElementById('web')
+			);
 			React.render(<InTheLabel fig="01build"/>,
 			document.getElementById('inside')
 			);
@@ -179,7 +196,22 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			);
 	
 		</script>
+		<script>
+		var setmenu;
+		function onoff(event)
+		{
+			setmenu=document.getElementById('menu'+event);
+			if(setmenu.style.display=="none")
+			{
+				setmenu.style.display="block";
+			}
+			else
+			{
+				setmenu.style.display="none";
+			}
 		
+		}
+		</script>
 </body>
 
 

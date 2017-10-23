@@ -1,0 +1,116 @@
+<!Doctype html>
+<html>
+
+<head>
+	<style>
+	#draggable {
+		
+	}
+	.setcomic{
+	position:fixed;
+	width:495px;
+	height:700px;
+	background-color:#555555;
+	background-repeat:no-repeat;
+	padding:0px;
+	top:30px;
+	left:50%;
+	transform:translate(-250px,0px);
+	background-image:url('testcomic/1.jpg');
+	background-size:contain;
+	text-align:center;
+	padding:5px;
+	}
+	.pagenumber{
+		position:absolute;
+		width:30px;
+		left:50vw;
+		transform:translate(-15px,0px);
+	}
+	.leftpage{
+		position:absolute;
+		width:30px;
+		height:30px;
+		left:0px;
+		top:50%;
+		background-color:#885555;
+		text-align:center;
+	}
+	
+	.rightpage{
+		position:absolute;
+		width:30px;
+		height:30px;
+		left:100vw;
+		margin-top:auto;
+		background-color:#885555;
+		transform:translate(-45px,0px);
+		text-align:center;
+	}
+	
+	.setbody{
+		position:fixed;
+		background-color:#888888;
+		background-repeat:no-repeat;
+		padding:0px;	
+	}
+	</style>
+	<script src="https://fb.me/react-0.14.3.min.js"></script>
+	<script src="https://fb.me/react-dom-0.14.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+
+<body class="setbody">
+	
+		<div class="leftpage"  onClick="sliceCom(-1);"> < </div>
+		<div class="rightpage" onClick="sliceCom( 1);"> > </div>
+		<div>
+		<div class="pagenumber" id="number" >1/4</div>
+		<div class="setcomic"id="draggable" ></div>	
+		</div>
+	
+		<script>
+		
+		var page=4;
+		var nowpage=1;
+		var setcomicpage;
+		$(function (){
+			$("#draggable").draggable({
+			 drag: function(event, ui) {
+			   $(".setcomic").css("transform","translate(0px,0px)");
+			}}
+			);
+		}
+		);
+		
+		function  sliceCom(slicepage)
+		{
+			
+			nowpage+=slicepage;
+			if(nowpage<=page &&nowpage>=1)
+			{
+			setcomicpage=document.getElementById('draggable');
+			setcomicpage.style.backgroundImage="url(testcomic/"+nowpage+".jpg)";
+			document.getElementById('number').innerHTML=nowpage+"/"+page;
+			
+			}
+			else if(nowpage>page)
+			{
+				nowpage=page;
+				alert("continue");
+			}
+			else if(nowpage<1)
+			{
+				nowpage=1;
+				alert("continue");
+			}
+			
+		}
+		
+		
+	</script>
+</body>
+</html>
