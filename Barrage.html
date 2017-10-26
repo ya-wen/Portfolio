@@ -1,0 +1,158 @@
+<!doctype html>
+<html>
+<head>
+
+	<style>
+	.videoSet{
+		position:relative;
+		width:1000px;
+		height:450px;
+		overflow:hidden;
+		background-color:#888888;	
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+	
+	}
+	.textFly{
+		position:absolute;
+		color:red;
+		opacity:1;
+	}
+	.sideClu{
+		position:relative;
+		width:1000px;
+		height:100px;
+		background-color:#555555;
+		margin-left:auto;
+		margin-right:auto;
+		text-align:center;
+	}
+	.sideClu>.insertText{
+		position:relative;
+		width:80%;
+		margin-left:auto;
+		margin-right:auto;
+		
+	}
+	.sideClu>.insertSub{
+		position:relative;
+		width:10%;
+		margin-left:auto;
+		margin-right:auto;
+		
+	}
+	.setFont{
+		color:#ffffff;
+	}
+	</style>
+	 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+	<div class="videoSet" id="targetwindow"  >
+		<div id="mission" name="mission2"></div>	
+	</div>
+	<div class="sideClu">
+		<input class="insertText" type="text" value="input" id="texttoset"/>
+		<input class="insertSub" type="submit" value=">" onClick="setWord();"/>
+		<section>
+			<input type="radio" name="mode" value="1" checked="true"/><span class="setFont">center</span>
+			<input type="radio" name="mode" value="2" /><span class="setFont">Barrage</span>
+		</section>
+		<section>
+			<input type="radio" name="setcolor" value="red" checked="true"/><span class="setFont">red</span>
+			<input type="radio" name="setcolor" value="yellow" /><span class="setFont">yellow</span>
+		</section>
+	</div>
+
+	<script>
+		var stringArray=[];
+		var iDiv = document.createElement('div');
+		var targetWindow=document.getElementById('targetwindow');
+		var newDiv=function(){
+			this.setdiv = document.createElement('div');
+			var inerString;
+			var setClass;
+			this.x=0;
+			this.y=0;
+			this.opacity=1.0;
+			this.mode=$("input[name=mode]:checked").val();
+			this.color=$("input[name=setcolor]:checked").val();
+		}
+		newDiv.prototype.setDate=function(inerData,setClassName){
+			var target
+			this.inerString=inerData;
+			this.setClass=setClassName;
+			this.y=targetWindow.offsetHeight*Math.random();
+		}
+		newDiv.prototype.setHTML=function(patentDiv){
+			this.setdiv.className = this.setClass;
+			this.setdiv.innerHTML=this.inerString;
+			patentDiv.appendChild(this.setdiv);
+			if(this.mode==1)
+			{		
+				this.x=(targetWindow.offsetWidth-this.setdiv.offsetWidth-100)/2.0+50;
+			}
+			if(this.mode==2)
+			{	
+				this.x=(targetWindow.offsetWidth);
+			}			
+		}
+		
+		newDiv.prototype.setPos=function(patentDiv){
+			patentDiv.style.textAlign="center";
+			this.setdiv.style.opacity=this.opacity;
+			this.setdiv.style.top=this.y+"px";	
+			this.setdiv.style.left=this.x+"px";
+			this.setdiv.style.color=this.color;
+			
+		}
+		newDiv.prototype.animation=function(){
+			if(this.mode==1)
+				{
+					this.opacity-=0.005;
+					this.setdiv.style.opacity=this.opacity;			
+				}
+			if(this.mode==2)
+				{
+					this.x-=1;
+					this.setdiv.style.left=this.x+"px";
+					if(this.x==(-this.setdiv.offsetWidth))this.opacity=-1;
+					
+				}
+		}
+		init();
+		animation();
+		function init(){
+			
+			iDiv.id = 'mission';
+			iDiv.className = 'textFly';
+			document.getElementsByName('mission2')[0].appendChild(iDiv);
+		}
+	
+		function setWord()
+		{
+			
+			var div2 = new newDiv();
+			div2.setDate(document.getElementById('texttoset').value,"textFly");
+			div2.setHTML(iDiv);
+			div2.setPos(iDiv);
+			stringArray.push(div2);
+		}
+		function animation(){
+			for(var i=0;i<stringArray.length;i++)
+			{
+				stringArray[i].animation();
+				if(stringArray[i].opacity<0.0){
+				stringArray.splice(i,1);
+				
+				}
+			}
+			setTimeout(animation,5);
+		}
+		
+		
+	</script>
+</body>
+</html>
