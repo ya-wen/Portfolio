@@ -68,8 +68,11 @@
 
 	<script>
 		var stringArray=[];
+		var setTime=new Date();
 		var iDiv = document.createElement('div');
 		var targetWindow=document.getElementById('targetwindow');
+		var timeset= localStorage.getItem("time");
+		
 		var newDiv=function(){
 			this.setdiv = document.createElement('div');
 			var inerString;
@@ -79,6 +82,7 @@
 			this.opacity=1.0;
 			this.mode=$("input[name=mode]:checked").val();
 			this.color=$("input[name=setcolor]:checked").val();
+			this.starttime=new Date();
 		}
 		newDiv.prototype.setDate=function(inerData,setClassName){
 			var target
@@ -109,21 +113,29 @@
 			
 		}
 		newDiv.prototype.animation=function(){
+			var time=((this.starttime.getHours()-setTime.getHours())*60*60*1000+
+			(this.starttime.getMinutes()-setTime.getMinutes())*60*1000+
+			(this.starttime.getSeconds()-setTime.getSeconds())*1000+
+			(this.starttime.getMilliseconds()-setTime.getMilliseconds()));
+			
+			
 			if(this.mode==1)
 				{
-					this.opacity-=0.005;
-					this.setdiv.style.opacity=this.opacity;			
+					var timeset=(this.opacity+(time*0.0003));
+					this.setdiv.style.opacity=timeset;			
+					if(timeset<0)this.opacity=-1;
 				}
 			if(this.mode==2)
 				{
-					this.x-=1;
-					this.setdiv.style.left=this.x+"px";
-					if(this.x==(-this.setdiv.offsetWidth))this.opacity=-1;
+					var timeset=(this.x+time*0.1);
+					this.setdiv.style.left=timeset+"px";
+					if(timeset==(-this.setdiv.offsetWidth))this.opacity=-1;
 					
 				}
+				
 		}
 		init();
-		animation();
+		setInterval(animation,5);
 		function init(){
 			
 			iDiv.id = 'mission';
@@ -141,15 +153,18 @@
 			stringArray.push(div2);
 		}
 		function animation(){
+			
 			for(var i=0;i<stringArray.length;i++)
 			{
+			
 				stringArray[i].animation();
 				if(stringArray[i].opacity<0.0){
 				stringArray.splice(i,1);
-				
 				}
 			}
-			setTimeout(animation,5);
+			setTime=new Date();
+			backgroundtime=setTime.toLocaleTimeString();
+			
 		}
 		
 		
