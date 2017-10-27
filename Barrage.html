@@ -18,6 +18,7 @@
 		position:absolute;
 		color:red;
 		opacity:1;
+		white-space: nowrap;
 	}
 	.sideClu{
 		position:relative;
@@ -54,7 +55,7 @@
 		<div id="mission" name="mission2"></div>	
 	</div>
 	<div class="sideClu">
-		<input class="insertText" type="text" value="input" id="texttoset"/>
+		<input class="insertText" type="text" value="input date" id="texttoset"/>
 		<input class="insertSub" type="submit" value=">" onClick="setWord();"/>
 		<section>
 			<input type="radio" name="mode" value="1" checked="true"/><span class="setFont">center</span>
@@ -163,7 +164,7 @@
 				}
 			}
 			setTime=new Date();
-			backgroundtime=setTime.toLocaleTimeString();
+			
 			
 		}
 		
