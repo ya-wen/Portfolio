@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+	<head>
+		<style>
+			.selecttype{
+				width:300px;
+				text-align:center;
+			
+			}
+			.settable{
+				
+				display:none;
+			}
+			table, th, td{
+				  border: 1px solid black;
+			
+			}
+		</style>
+	
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	</head>
+	<body>
+		<section>
+		</section>
+			<span>name</span>
+			<input name="setname" type="text" value="name"/>
+		<section >
+		<hr/>
+		<div>gender</div>
+			<input type="radio" name="place" value="male" checked="true"/> <span>male</span>
+			<input type="radio" name="place" value="Female"/> <span>Female</span>
+			<input type="radio" name="place" value="unknown"/> <span>unknown</span>
+		</section>
+		<hr/>
+		<section>
+			<div>birthday </div>
+			<span>year</span>
+			<select id="selectyear" onchange="leapyearotnot();" class="selecttype"></select>
+			<span>month</span>
+			<select id="selectmon" onchange="setdate();" class="selecttype"></select>
+			<span>date</span>
+			<select id="selectdate" class="selecttype"></select>
+			<script src="sheetmember/date.js"> onloadinit();</script>
+		</section>
+		<hr/>
+		<input type="submit" value="submit" onclick="drawinner();"/>
+		
+		<table class="settable"  id="tabledate">
+			<tr>
+				<tr>
+					<td>
+						<span>name</span>
+					</td>
+					
+					<td>
+					<span id="forname"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>gender</span>
+					</td>
+					
+					<td>
+					<span id="forgender">test</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>birth</span>
+					</td>
+					
+					<td>
+					<span id="forbirth">test</span>
+					</td>
+				</tr>
+			</tr>
+		</table>
+		
+		<script>
+			function drawinner(){
+				var tabledis=document.getElementById('tabledate');
+				tabledis.style.display="table";
+				
+				document.getElementById('forname').innerHTML=$("input[name=setname]:text").val();
+				document.getElementById('forgender').innerHTML=$("input[name=place]:checked").val();
+				
+				document.getElementById('forbirth').innerHTML=$("#selectyear").val()+"/"+$("#selectmon").val()+"/"+
+				$("#selectdate").val();
+			
+			}
+			
+		</script>
+		
+		
+	</body>
+</html>

@@ -91,6 +91,11 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			<div class="blockset">
 				<div id="web" class="label"></div>
 				<div id="Barrage" class="label"></div>
+				<div id="sheet" class="label"></div>
+			</div>
+			<div class="blockset">
+				<div id="ajax" class="label"></div>
+				
 			</div>
 		</div>
 		<hr/>
@@ -168,6 +173,14 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			React.render(<InTheLabel fig="Barrage"/>,
 			document.getElementById('Barrage')
 			);
+			React.render(<InTheLabel fig="sheet"/>,
+			document.getElementById('sheet')
+			);
+			React.render(<InTheLabel fig="ajax"/>,
+			document.getElementById('ajax')
+			);
+			
+			
 			React.render(<InTheLabel fig="01build"/>,
 			document.getElementById('inside')
 			);

@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>緘默符文漫畫集</title>
+
+	<style>
+	
+	.liststyle{
+	display:inline;
+	
+	
+	}
+	</style>
+</head>
+
+	
+<body onload="getDate('list1.html');">
+	<div onClick="getDate('list1.html');" class="liststyle">list1</div>
+	<div onClick="getDate('list2.html');" class="liststyle">list2</div>
+	<hr/>
+	<div id="content"></div>
+	<script>
+	
+	function getDate(pagename)
+	{
+				var req=new XMLHttpRequest();
+				req.open("get","https://ya-wen.github.io/Portfolio/"+pagename);
+				req.onload=function(){
+					var content=document.getElementById('content');
+					content.innerHTML=this.responseText;
+				}
+				req.send();
+	
+	
+	}
+	</script>
+	
+	
+
+</body>
+
+
+</html>
