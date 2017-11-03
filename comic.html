@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<meta name="viewport" content="width=device-width,inital-scale=1,maximum-scale=1">
 	<style>
 	#draggable {
 		
@@ -12,14 +13,14 @@
 	height:700px;
 	background-color:#555555;
 	background-repeat:no-repeat;
-	padding:0px;
+
 	top:30px;
 	left:50%;
 	transform:translate(-250px,0px);
 	background-image:url('testcomic/1.jpg');
 	background-size:contain;
 	text-align:center;
-	padding:5px;
+
 	}
 	.pagenumber{
 		position:absolute;
@@ -29,23 +30,31 @@
 	}
 	.leftpage{
 		position:absolute;
-		width:30px;
-		height:30px;
+		width:300px;
+		height:300px;
 		left:0px;
 		top:50%;
-		background-color:#885555;
 		text-align:center;
+	 
 	}
 	
 	.rightpage{
 		position:absolute;
-		width:30px;
-		height:30px;
+		width:300px;
+		height:300px;
 		left:100vw;
 		margin-top:auto;
-		background-color:#885555;
-		transform:translate(-45px,0px);
+		transform:translate(-300px,0px);
 		text-align:center;
+	
+	}
+	.inner{
+		width:300px;
+		height:300px;
+		display: table-cell;
+		vertical-align: middle ;
+		
+		font-size:300px;
 	}
 	
 	.setbody{
@@ -53,6 +62,35 @@
 		background-color:#888888;
 		background-repeat:no-repeat;
 		padding:0px;	
+	}
+	@media screen and (max-width:600px)
+	{
+			.setcomic{
+				width:250px;
+				height:350px;
+				background-color:#ff0000;
+				transform:translate(-125px,0px);
+			
+			}
+			.leftpage{
+				width:50px;
+				height:50px;
+				transform:translate(0,-20px);
+			
+			}
+			.rightpage{
+				width:50px;
+				height:50px;
+				transform:translate(-75px,-20px);
+			}
+			.inner{
+				width:50px;
+				height:50px;
+				display: table-cell;
+				vertical-align: middle ;
+				font-size:20px;
+			}
+		
 	}
 	</style>
 	<script src="https://fb.me/react-0.14.3.min.js"></script>
@@ -65,8 +103,8 @@
 
 <body class="setbody">
 	
-		<div class="leftpage"  onClick="sliceCom(-1);"> < </div>
-		<div class="rightpage" onClick="sliceCom( 1);"> > </div>
+		<div class="leftpage"  onClick="sliceCom(-1);"> <span class="inner" style="text-align:left;">< </span></div>
+		<div class="rightpage" onClick="sliceCom( 1);"> <span class="inner" style="text-align:right"> > </span></div>
 		<div>
 		<div class="pagenumber" id="number" >1/4</div>
 		<div class="setcomic"id="draggable" ></div>	
