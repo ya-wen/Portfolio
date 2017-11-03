@@ -14,7 +14,7 @@ overflow:hidden;
 	top:0px;
     text-align: center;
     color: #ffff00;	
-	background-color: #000000;
+
 	font-size:50px;
 	overflow:auto;
 
@@ -25,11 +25,12 @@ overflow:hidden;
 	width:150px;
 	top: 0px;
 	height:50px;
-	background-color: #ff0000;	
+	background-color: #000000;	
 	opacity:0.5;
 	font-size:50px;
 	padding:10px;
 	text-align:left;
+	 -webkit-user-select: none; 
 
 }
 ul{
@@ -71,40 +72,20 @@ ul{
 
 <div >
 	<div class="doorinfo"  id="side">
-	<span id="patten" onClick="showoff();">V</span>
-	<ul id="list1">
-	<li class="setbotton" onClick="toggle('open');">open</li>
-	<li class="setbotton" onclick="toggle('close');">close</li>
-	<li class="setbotton" onclick="toggle('stop');">stop</li>
-	<li class="setbotton" onclick="toggle('frame');">frame</li>
-	<li class="setbotton" onclick="toggle('door');">door</li>
+	<details>
+	<summary>  </summary>
+	<p class="setbotton" onClick="toggle('open');">open</p>
+	<p class="setbotton" onclick="toggle('close');">close</p>
+	<p class="setbotton" onclick="toggle('stop');">stop</p>
+	<p class="setbotton" onclick="toggle('frame');">frame</p>
+	<p class="setbotton" onclick="toggle('door');">door</p>
 	</ul>
-	</div>
+	</details>
 </div>
 
 
 <script>
 var menu1,menu2,menu3;
-function showoff()
-{			menu2=document.getElementById("patten");
-			menu1=document.getElementById("list1");
-			menu3=document.getElementById("side");
-			if(menu1.style.display=="none")
-			{
-				menu1.style.display="inline";
-				menu2.innerHTML="V";
-				menu3.style.height="100vw";
-				menu3.style.overflow="auto";
-			}
-			else
-			{
-				menu1.style.display="none";
-				menu2.innerHTML=">";
-				menu3.style.height="50px";
-				menu3.style.overflow="hidden";
-			}
-	
-}
 
 function toggle(mission)
 {
