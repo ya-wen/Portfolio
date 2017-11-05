@@ -4,90 +4,21 @@
 <meta name="viewport"
 content="width=device-width,inital-scale=1,maximum-scale=1"
 />
-
-<style>
-			.settitle {
-				position:relative;
-				background: rgba(0,0,0,1.0); 
-				text-align: center;
-				color: white;
-				font-size:32px;
-				width:50%;
-				margin-left:auto;
-				margin-right:auto;
-			}
-			.thebackground{
-				background-color:#000000;
-				background-repeat:no-repeat;
-				background-size:cover;
-			}
-			.blockset{
-				position:relative;
-				padding:10px;
-				width:1000px;
-				height:300px;
-				margin-left:auto;
-				margin-right:auto;
-				text-align:center;
-				
-			}
-			.blockset>.label{
-				position:relative;
-				width:300px;
-				height:250px;
-				background-color:rgba(231,169,24,0.3);
-				margin-left:auto;
-				margin-right:auto;
-				text-align:center;
-				display:inline-block;
-			}
-			.label>.labelImg{
-				position:absolute;
-				width:250px;
-				height:200px;
-				background-color:rgba(255,125,75,0.3);
-				background-repeat:no-repeat;
-				background-size:250px 200px;
-				margin-left:25px;
-				margin-right:25px;
-				margin-top:10px;
-				text-align:center;
-			}
-			.label>.labelName{
-				position:absolute;
-				width:250px;
-				left:25px;
-				top:215px;
-				text-align:center;
-			}
-		@media screen and (max-width:600px)
-		{
-			.blockset{
-				width:300px;
-				height:750px;
-				text-align:center;
-			}
-			.blockset>.label
-			{
-				position:relative;
-			}
-		
-		}
-		</style>
-		
-		
+		<link rel="stylesheet" type="text/css" href="Css/index.css">
 		<script src="https://fb.me/react-0.14.3.min.js"></script>
 		<script src="https://fb.me/react-dom-0.14.3.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+		<script  type="text/jsx" src="jsx/InTheLabel.js"></script>
 	</head>
 	
 	<body class="thebackground">
 		
 		<div class="settitle">Tseng's portfolio</div>
 		<hr/>
-		<div class="settitle" onclick="onoff(1);">Web(click to on/off)</div>
-		<div  id="menu1">
+		<details class="settitle" onclick="onoff(1);">
+		<summary>web</summary>
+	
 			<div class="blockset">
 				<div id="web" class="label"></div>
 				<div id="Barrage" class="label"></div>
@@ -97,12 +28,12 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 				<div id="ajax" class="label"></div>
 				
 			</div>
-		</div>
+		</details>
 		<hr/>
 		
 		
-		<div class="settitle" onclick="onoff(2);">animation(click to on/off)</div>
-		<div  id="menu2">
+		<details class="settitle" onclick="onoff(2);">
+			<summary>animation</summary>
 			<div class="blockset">
 			<div id="inside" class="label"></div>
 			<div id="inside2"class="label"></div>
@@ -118,55 +49,10 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			<div id="inside8" class="label"></div>
 			<div id="inside9" class="label"></div>
 			</div>
-			
-		</div>
+		</details>	
+		
 		<script type="text/jsx">
 			
-			class InTheLabel extends React.Component{
-				constructor(props){
-					super(props);
-					this.state={
-					opacity:0.5
-					
-					};
-				}
-				here(){
-					this.setState({
-					opacity:1.0
-					}
-					);
-				}
-				out(){
-					this.setState(
-					{
-						opacity:0.5
-					}
-					);
-				}
-				
-				render(){
-				const styleObj={
-					opacity:this.state.opacity,
-				};
-				return(
-					<a href={""+this.props.fig+".html"}>
-					<div className="label" 
-					style={styleObj}
-					onMouseEnter={this.here.bind(this)}
-					onMouseLeave={this.out.bind(this)}
-					>
-						<div className="labelImg" 
-						style={{
-						backgroundImage:"url("+this.props.fig+".gif)"
-						}}
-						></div>
-						<div className="labelName" >{this.props.fig}</div>
-					</div>
-				</a>
-				
-				);
-			}
-			}
 			React.render(<InTheLabel fig="comic"/>,
 			document.getElementById('web')
 			);
@@ -179,8 +65,6 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			React.render(<InTheLabel fig="ajax"/>,
 			document.getElementById('ajax')
 			);
-			
-			
 			React.render(<InTheLabel fig="01build"/>,
 			document.getElementById('inside')
 			);
@@ -212,22 +96,7 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			);
 	
 		</script>
-		<script>
-		var setmenu;
-		function onoff(event)
-		{
-			setmenu=document.getElementById('menu'+event);
-			if(setmenu.style.display=="none")
-			{
-				setmenu.style.display="block";
-			}
-			else
-			{
-				setmenu.style.display="none";
-			}
-		
-		}
-		</script>
+	
 </body>
 
 
