@@ -1,0 +1,13 @@
+	.selecttype{
+				width:300px;
+				text-align:center;
+			
+			}
+			.settable{
+				
+				display:none;
+			}
+			table, th, td{
+				  border: 10px solid black;
+			
+			}

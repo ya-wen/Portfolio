@@ -26,7 +26,7 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			</div>
 			<div class="blockset">
 				<div id="ajax" class="label"></div>
-				
+				<div id="webtest" class="label"></div>
 			</div>
 		</details>
 		<hr/>
@@ -53,6 +53,7 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 		
 		<script type="text/jsx">
 			
+		
 			React.render(<InTheLabel fig="comic"/>,
 			document.getElementById('web')
 			);
@@ -64,6 +65,9 @@ content="width=device-width,inital-scale=1,maximum-scale=1"
 			);
 			React.render(<InTheLabel fig="ajax"/>,
 			document.getElementById('ajax')
+			);
+			React.render(<InTheLabel fig="webtest"/>,
+			document.getElementById('webtest')
 			);
 			React.render(<InTheLabel fig="01build"/>,
 			document.getElementById('inside')
