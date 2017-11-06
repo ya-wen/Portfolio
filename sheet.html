@@ -1,98 +1,70 @@
 <!doctype html>
 <html>
 	<head>
-		<style>
-			.selecttype{
-				width:300px;
-				text-align:center;
-			
-			}
-			.settable{
-				
-				display:none;
-			}
-			table, th, td{
-				  border: 1px solid black;
-			
-			}
-		</style>
-	
-		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+			<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link href="Css/forsheet.css">
 	</head>
-	<body>
-		<section>
-		</section>
-			<span>name</span>
-			<input name="setname" type="text" value="name"/>
-		<section >
-		<hr/>
-		<div>gender</div>
-			<input type="radio" name="place" value="male" checked="true"/> <span>male</span>
-			<input type="radio" name="place" value="Female"/> <span>Female</span>
-			<input type="radio" name="place" value="unknown"/> <span>unknown</span>
-		</section>
-		<hr/>
-		<section>
+	<body ng-app="myApp">
+		<div   ng-submit="submit()"  ng-controller="myctrl">
+			<input ng-model="name" type="text" >
+		
+			
+			<hr/>
+			<div>gender</div>
+			<input type="radio" ng-model="place" value="male" /> <span>male</span>
+			<input type="radio" ng-model="place" value="Female"/> <span>Female</span>
+			<input type="radio" ng-model="place" value="unknown"/> <span>unknown</span>
+			<hr/>
+			
 			<div>birthday </div>
 			<span>year</span>
-			<select id="selectyear" onchange="leapyearotnot();" class="selecttype"></select>
+			<select id="selectyear" onchange="leapyearotnot();" ng-model="year" class="selecttype"></select>
 			<span>month</span>
-			<select id="selectmon" onchange="setdate();" class="selecttype"></select>
+			<select id="selectmon" onchange="setdate();"  ng-model="mon" class="selecttype" ></select>
 			<span>date</span>
-			<select id="selectdate" class="selecttype"></select>
+			<select id="selectdate"  ng-model="dat" class="selecttype"></select>
+			
+			
 			<script src="sheetmember/date.js"> onloadinit();</script>
-		</section>
-		<hr/>
-		<input type="submit" value="submit" onclick="drawinner();"/>
-		
-		<table class="settable"  id="tabledate">
-			<tr>
-				<tr>
-					<td>
-						<span>name</span>
-					</td>
+			
+			
+			<hr/>
+			
+			
 					
-					<td>
-					<span id="forname"></span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>gender</span>
-					</td>
+					<div>name:
 					
-					<td>
-					<span id="forgender">test</span>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<span>birth</span>
-					</td>
+					<span ng-bind="name"></span>
+					</div>
 					
-					<td>
-					<span id="forbirth">test</span>
-					</td>
-				</tr>
-			</tr>
-		</table>
-		
+					<div>gender:
+					
+					<span ng-bind="place"></span>
+					</div>
+					<div>birth:
+					
+					<span ng-bind="year"></span>
+					<span ng-bind="mon"></span>
+					<span ng-bind="dat"></span>
+					</div>
+					
+		</div>
 		<script>
-			function drawinner(){
-				var tabledis=document.getElementById('tabledate');
-				tabledis.style.display="table";
-				
-				document.getElementById('forname').innerHTML=$("input[name=setname]:text").val();
-				document.getElementById('forgender').innerHTML=$("input[name=place]:checked").val();
-				
-				document.getElementById('forbirth').innerHTML=$("#selectyear").val()+"/"+$("#selectmon").val()+"/"+
-				$("#selectdate").val();
-			
-			}
-			
+				var app=angular.module('myApp',[]);
+				app.controller('myctrl',function($scope){
+					$scope.name="your name";
+					$scope.place="male";
+					$scope.year=""+(new Date().getFullYear());
+					$scope.mon="1";
+					$scope.dat="1";
+					
+				}
+				);
 		</script>
-		
-		
+	
 	</body>
+
+
 </html>
